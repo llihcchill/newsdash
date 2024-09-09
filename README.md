@@ -16,17 +16,10 @@ then press enter.
 
 ## to get people on your network able to join
 
-1. locate and open up in a text editor the server.go file
-2. search for (ctrl + f) `func main()`
-3. at the bottom of the function, locate `log.Fatal(http.ListenAndServe(":8080", nil))`
-4. replace :8080 with 0.0.0.0:8080 (*should look like* `log.Fatal(http.ListenAndServe("0.0.0.0:8080", nil))`)
-  
-6. go to your command prompt and enter `ipconfig` if on windows, or `ip` on linux
-7. look for your first IPv4 address and copy it
-8. paste your IPv4 address in your browser's search bar, and then append `:8080` to the end of it (should look something like `192.168.0.240:8080`)
-9. search this in your browser and then the page should appear on your screen! (and, if searched on other devices connected to your network, it should appear on their screens as well!)
-
-
+1. go to your command prompt and enter `ipconfig` if on windows, or `ip` on linux
+2. look for your first IPv4 address and copy it
+3. paste your IPv4 address in your browser's search bar, and then append `:8080` to the end of it (should look something like `192.168.0.240:8080`)
+4. search this in your browser and then the page should appear on your screen! (and, if searched on other devices connected to your network, it should appear on their screens as well!)
 
 
 ## for fellow developers
