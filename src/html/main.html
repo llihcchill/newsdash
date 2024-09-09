@@ -11,74 +11,82 @@
         </main>
 
         
-            <script type="module">
-            import {LitElement, html, css} from "https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js";
+        <script type="module">
 
-                let username
+        //**************************************************************************************************
+        // might eventually split this up but due to import MIME type issues I'll be developing it like this
+        //**************************************************************************************************
 
-                export class Login extends LitElement {
-                    // Define scoped styles right with your component, in plain CSS
-                    static styles = css``;
+        import {LitElement, html, css} from "https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js";
+        // using CDN because of above ^^^
+        // at least it's one less build tool \o/
+
+        // locally stores about-to-be-given username
+        let username
+
+        export class Login extends LitElement {
+            // scoped css here
+            static styles = css``;
+                    
+            constructor() {
+                super();
+                // reactive properties here
+            }
+
+            formSubmit(e) {
+                e.preventDefault()
+
+                // transform form into object to then get data from
+                const form = e.target
+                const formData = new FormData(form)
+                const formValues = Object.fromEntries(formData.entries())
+
+                username = formValues.username
+
+                // send to server-select page without full page refresh
+                htmx.ajax("GET", "/server-select", {target: "#main", swap: "innerHTML"})
+            }
                 
-                    constructor() {
-                    super();
-                    // Declare reactive properties
-                    //this.username = '';
-                    }
+            // render component
+            render() {
+            return html`
+                <h1>
+                    NewsDash
+                </h1>
 
-                    formSubmit(e) {
-                        e.preventDefault()
+                <form @submit=${this.formSubmit} hx-get="/test">
+                    <input name="username" type="text">
+                    <button type="submit">Submit</button>
+                </form>
+                `;
+            }
+        }
+        customElements.define('log-in', Login);
 
-                        const form = e.target
 
-                        const formData = new FormData(form)
-                        const formValues = Object.fromEntries(formData.entries())
+        export class ServerSelect extends LitElement {
+            // scoped css here
+            static styles = css``;
 
-                        console.log(formValues)
+            constructor() {
+                super()
+                // reactive properties here
+            }
 
-                        username = formValues.username
-                        console.log(username)
-
-                        htmx.ajax("GET", "/server-select", {target: "#main", swap: "innerHTML"})
-                    }
-                
-                    // Render the UI as a function of component state
-                    render() {
-                    return html`
-                        <h1>
-                            NewsDash
-                        </h1>
-
-                        <form @submit=${this.formSubmit} hx-get="/test">
-                            <input name="username" type="text">
-                            <button type="submit">Submit</button>
-                        </form>
-                    `;
-                    }
+            // render component
+            render() {
+            return html`
+                <p>
+                    a server should show up here; 
+                    use for loop to render over all the servers, implement
+                    websockets for real time updates and boom
+                </p>
+                `;
                 }
-                customElements.define('log-in', Login);
-
-
-                export class ServerSelect extends LitElement {
-                    constructor() {
-                        super()
-                        // put any reactive properties here
-                    }
-
-                    render() {
-                    return html`
-                            <p>
-                                a server should show up here; 
-                                use for loop to render over all the servers, implement
-                                websockets for real time updates and boom
-                            </p>
-                        `;
-                    }
-                }
-                customElements.define("server-select", ServerSelect);
-
-            </script>
-        
-        
+            }
+            customElements.define("server-select", ServerSelect);
+        </script>
+    </body>
+</html>
     </body>
 </html>
