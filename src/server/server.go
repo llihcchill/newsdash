@@ -25,5 +25,5 @@ func main() {
 	http.HandleFunc("/", index)
 	http.HandleFunc("/server-select", serverSelect)
 
-	log.Fatal(http.ListenAndServe("0.0.0.0:8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
