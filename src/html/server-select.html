@@ -7,6 +7,9 @@
 </p>
 
 <script type="module">
+// remove main.html's javascript
+document.getElementById("main-s").remove()
+    
 import {LitElement, html, css} from "https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js";
 
 export class ServerSelect extends LitElement {
