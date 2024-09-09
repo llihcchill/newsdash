@@ -5,3 +5,32 @@
 <p>
     please choose from our finest collection!
 </p>
+
+<script type="module">
+import {LitElement, html, css} from "https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js";
+
+export class ServerSelect extends LitElement {
+    // scoped css here
+    static styles = css``;
+
+    constructor() {
+        super();
+        // reactive properties here
+    }
+
+    // render component
+    render() {
+    return html`
+        <h2>
+            List of servers for you, 
+        </h2>
+        <p>
+            a server should show up here; 
+            use for loop to render over all the servers, implement
+            websockets for real time updates and boom
+        </p>
+        `;
+    }
+}
+customElements.define("server-select", ServerSelect);
+</script>
