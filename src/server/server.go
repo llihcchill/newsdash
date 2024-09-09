@@ -6,18 +6,26 @@ import (
 	"net/http"
 )
 
-func index(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("../html/main.html"))
-
+// RENDER TEMPLATE FUNCTION
+func renderTemplate(w http.ResponseWriter, r *http.Request, file string) {
+	tmpl := template.Must(template.ParseFiles(file))
 	tmpl.Execute(w, nil)
+}
+// END RENDER TEMPLATE FUNCTION
+
+
+// DIRECTORY FUNCTIONS
+func index(w http.ResponseWriter, r *http.Request) {
+	renderTemplate(w, r, "../html/main.html")
 }
 
 func serverSelect(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("../html/server-select.html"))
-
-	tmpl.Execute(w, nil)
+	renderTemplate(w, r, "../html/server-select.html")
 }
+// END DIRECTORY FUNCTIONS
 
+
+// MAIN FUNCITON
 func main() {
 	fs := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
@@ -27,3 +35,4 @@ func main() {
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
+// END MAIN FUNCTION
