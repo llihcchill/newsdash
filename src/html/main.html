@@ -22,7 +22,7 @@
         // at least it's one less build tool \o/
 
         // locally stores about-to-be-given username
-        let username
+        let username;
 
         export class Login extends LitElement {
             // scoped css here
@@ -34,17 +34,17 @@
             }
 
             formSubmit(e) {
-                e.preventDefault()
+                e.preventDefault();
 
                 // transform form into object to then get data from
-                const form = e.target
-                const formData = new FormData(form)
-                const formValues = Object.fromEntries(formData.entries())
+                const form = e.target;
+                const formData = new FormData(form);
+                const formValues = Object.fromEntries(formData.entries());
 
-                username = formValues.username
+                username = formValues.username;
 
                 // send to server-select page without full page refresh
-                htmx.ajax("GET", "/server-select", {target: "#main", swap: "innerHTML"})
+                htmx.ajax("GET", "/server-select", {target: "#form", swap: "innerHTML"});
             }
                 
             // render component
@@ -53,12 +53,18 @@
                 <h1>
                     NewsDash
                 </h1>
-
-                <form @submit=${this.formSubmit} hx-get="/test">
-                    <input name="username" type="text">
-                    <button type="submit">Submit</button>
-                </form>
+                <div id="form">
+                    <form @submit=${this.formSubmit}>
+                        <input name="username" type="text">
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
                 `;
+            }
+
+            // remove shadow DOM to keep NewsDash title rendered
+            createRenderRoot() {
+                return this;
             }
         }
         customElements.define('log-in', Login);
@@ -69,13 +75,16 @@
             static styles = css``;
 
             constructor() {
-                super()
+                super();
                 // reactive properties here
             }
 
             // render component
             render() {
             return html`
+                <h2>
+                    List of servers for you, 
+                </h2>
                 <p>
                     a server should show up here; 
                     use for loop to render over all the servers, implement
@@ -86,7 +95,5 @@
             }
             customElements.define("server-select", ServerSelect);
         </script>
-    </body>
-</html>
     </body>
 </html>
