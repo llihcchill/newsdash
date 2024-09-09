@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="/static/htmx.min.js"></script>
+    </head>
+
+    <body>
+        <main id="main">
+            <log-in name="world"></log-in>
+        </main>
+
+        
+            <script type="module">
+            import {LitElement, html, css} from "https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js";
+
+                let username
+
+                export class Login extends LitElement {
+                    // Define scoped styles right with your component, in plain CSS
+                    static styles = css``;
+                
+                    constructor() {
+                    super();
+                    // Declare reactive properties
+                    //this.username = '';
+                    }
+
+                    formSubmit(e) {
+                        e.preventDefault()
+
+                        const form = e.target
+
+                        const formData = new FormData(form)
+                        const formValues = Object.fromEntries(formData.entries())
+
+                        console.log(formValues)
+
+                        username = formValues.username
+                        console.log(username)
+
+                        htmx.ajax("GET", "/server-select", {target: "#main", swap: "innerHTML"})
+                    }
+                
+                    // Render the UI as a function of component state
+                    render() {
+                    return html`
+                        <h1>
+                            NewsDash
+                        </h1>
+
+                        <form @submit=${this.formSubmit} hx-get="/test">
+                            <input name="username" type="text">
+                            <button type="submit">Submit</button>
+                        </form>
+                    `;
+                    }
+                }
+                customElements.define('log-in', Login);
+
+
+                export class ServerSelect extends LitElement {
+                    constructor() {
+                        super()
+                        // put any reactive properties here
+                    }
+
+                    render() {
+                    return html`
+                            <p>
+                                a server should show up here; 
+                                use for loop to render over all the servers, implement
+                                websockets for real time updates and boom
+                            </p>
+                        `;
+                    }
+                }
+                customElements.define("server-select", ServerSelect);
+
+            </script>
+        
+        
+    </body>
+</html>
