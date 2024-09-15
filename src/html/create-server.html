@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<create-server>
+
+</create-server>
+
+
+<script type="module">
+// see if you need to delete any previous scripts
+import {LitElement, html, css} from "https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js";
+
+let randomNumber = Math.floor(Math.random() * 10000)
+console.log(randomNumber)
+
+const wsData = {
+    reference: randomNumber,
+}
+
+let socket = new WebSocket("ws://localhost:8080/ws")
+
+socket.onopen = function(event) {
+    console.log("does work!")
+};
+
+
+socket.onmessage = function(event) {
+    console.log("on message")
+    console.log(event.data)
+}
+
+
+socket.onclose = function(event) {
+    console.log("on close!")
+}
+
+export class createServer extends LitElement {
+    // scoped css here
+    static styles = css``;
+
+    constructor() {
+        super();
+        // reactive properties here
+        this.test = ""
+    }
+
+    formSubmit(e) {
+        e.preventDefault()
+
+        socket.send(JSON.stringify(wsData))
+    }
+
+    // render component
+    render() {
+    return html`
+        <h1>
+            Create Server
+        </h1>
+
+        <form @submit=${this.formSubmit}>
+            <button type="submit">Create Server</button>
+        </form>
+        
+        `;
+        // should add other inputs (password, title etc.)
+    }
+
+    createRenderRoot() {
+        return this;
+    }
+}
+customElements.define("create-server", createServer);
+
+
+</script>
