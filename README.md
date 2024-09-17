@@ -7,7 +7,7 @@ It is not so much made like a proper video game, but is a web-app which can be r
 node server.js
 ```
 
-This will start the development server. Then (if server.go has not been tinkered with) search into your browser:
+This will start the development server. Then (if server.js has not been tinkered with) search into your browser:
 ```
 localhost:3000
 ```
