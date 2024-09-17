@@ -39,11 +39,11 @@ this project is somewhat an experiment to attempt to:
 > you may read that and then read the absolute beast that is the <script> tag in the main.html file, though that is only there because i can't get imports working because of a MIME type issue of the file which i might eventually fix by using [Open Web Components'](https://open-wc.org/guides/) scaffolding thing to set it up: `npm init @open-wc`, though it adds a ton of depencies that aren't necessary, it'll help with developer experience.
 
 
-## The way this has been achieved? [WebComponents](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) with [Lit](https://lit.dev/). (*plus htmx with a golang backend which i'll talk about*)
+## The way this has been achieved? [WebComponents](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) with [Lit](https://lit.dev/) and a touch of vanilla JavaScript. (*plus htmx with an express.js backend which i'll talk about*)
 
 the main idea is where:
 
-1. the server renders the initial page template (Golang web server)
+1. the server renders the initial page template (Express.js web server)
 2. the client renders its components on that page along with its content (Lit components)
 3. to move to a different page but still have that SPA feel, the partial part of the page where components are needed are swapped with a different template with it's own components by the server (HTMX GET request)
 4. repeat
