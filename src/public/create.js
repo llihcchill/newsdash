@@ -1,35 +1,19 @@
 import {html, render} from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
-import {servers} from "../private/_state.js"
-
-const socket = new WebSocket("ws://localhost:3000")
 
 // testing with websockets -----------
-socket.onopen = function(event) {
-    console.log("onopen")
-  };
-  
-  socket.onmessage = function(event) {
-    console.log("onmessage")
-  };
-  
-  socket.onclose = function(event) {
-    console.log("onclose")
-  };
-  
-  function sendMessage(message) {
-    socket.send(message);
-  }
+var socket = io()
 // testing with websockets end ------
 
 function form(e) {
     e.preventDefault()
 
-    // create random number, push to state, then send to 
+    // create random number, then send to 
     // server via websocket connection
     let serverID = Math.floor(Math.random() * 10000)
-    servers = [].push(serverID)
 
-    sendMessage(serverID)
+    socket.emit("server", serverID)
+
+    htmx.ajax("GET", "/select", {target: "body", swap: "innerHTML"})
 }
 
 function createServer() {
