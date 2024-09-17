@@ -4,13 +4,12 @@
 
 It is not so much made like a proper video game, but is a web-app which can be run by (when starting in the /src/ directory):
 ```
-cd server
-go run server.go
+node server.js
 ```
 
 This will start the development server. Then (if server.go has not been tinkered with) search into your browser:
 ```
-localhost:8080
+localhost:3000
 ```
 then press enter.
 
@@ -18,7 +17,7 @@ then press enter.
 
 1. go to your command prompt and enter `ipconfig` if on windows, or `ip` on linux
 2. look for your first IPv4 address and copy it
-3. paste your IPv4 address in your browser's search bar, and then append `:8080` to the end of it (should look something like `192.168.0.240:8080`)
+3. paste your IPv4 address in your browser's search bar, and then append `:3000` to the end of it (should look something like `192.168.0.240:3000`)
 4. search this in your browser and then the page should appear on your screen! (and, if searched on other devices connected to your network, it should appear on their screens as well!)
 
 
