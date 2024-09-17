@@ -1,7 +1,5 @@
 import {html, render} from "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js"
 
-let username;
-
 function form(e) {
     e.preventDefault()
 
@@ -10,13 +8,14 @@ function form(e) {
     const formData = new FormData(form);
     const formValues = Object.fromEntries(formData.entries());
 
-    // maybe commit username to localstorage? very temporary
-    // if then when going into production, put it into a db instead
-    username = formValues.username;
+    let username = formValues.username;
     console.log(username)
 
+    // when going into production, put it into a db instead of localStorage
+    localStorage.setItem("username", username)
+
     // send to server-select page without full page refresh
-    htmx.ajax("GET", "/select", {target: "#register", swap: "outerHTML"});
+    htmx.ajax("GET", "/select", {target: "body", swap: "innerHTML"});
 }
 
 function register() {
