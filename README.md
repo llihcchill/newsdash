@@ -2,6 +2,22 @@
 
 > NewsDash is a Jackbox-styled party game where each players has to either make up a news headline, or find a real one, and guess if it is real or fake.
 
+---
+## State of the project right now:
+```
+var finished = false;
+
+if(finished == true) {
+    console.log("done!");
+} else {
+    console.log("still needs work");  
+}
+
+> still needs work
+```
+
+---
+
 It is not so much made like a proper video game, but is a web-app which can be run by (when starting in the /src/ directory):
 ```
 node server.js
