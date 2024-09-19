@@ -9,3 +9,5 @@ things that should be done:
 
  - [ ] have it themed in the 20's, newspapers, bunch of old timey stuff
         -> very much for later when all the functionalities have been completed
+
+ - [ ] have public and private servers
