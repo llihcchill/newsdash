@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta charset="utf-8">
-        <script src="/htmx.min.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-    </head>
-    
     <body>
-
         <script type="module" src="/create.js"></script>
         
         <h1>
@@ -17,6 +10,15 @@
         
         <div id="create">
         
+        </div>
+
+        <!-- partial client (above) and serverside (below) rendering??? -->
+
+        <div>
+            <p>
+                Select a server?
+                <button hx-get="/select" hx-target="body" hx-swap="innerHTML">Click here!</button>
+            </p>
         </div>
     </body>
 </html>
