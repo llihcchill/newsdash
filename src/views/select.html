@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta charset="utf-8">
-        <script src="/htmx.min.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-    </head>
     <body>
+
         <script type="module" src="/select.js"></script>
+
+        <h1>
+            Select A Server To Join
+        </h1>
         
         <!-- component here -->
         <div id="select">
             
         </div>
-        
-        <p>
-            please choose from our finest collection!
-        </p>
+
+        <div>
+            <p>
+                Host your own server?
+                <br />
+                <button hx-get="/create" hx-target="body" hx-swap="innerHTML">Start one here!</button>
+            </p>
+        </div>
     </body>
-    
 </html>
